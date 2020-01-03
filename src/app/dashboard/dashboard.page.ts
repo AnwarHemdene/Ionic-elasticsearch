@@ -10,16 +10,10 @@ import * as uuidv4 from 'uuid/v4';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(
-  			private authenticationService: AuthenticationService,
-  			public httpClient: HttpClient
-  			) { }
+  constructor(private authenticationService: AuthenticationService, public httpClient: HttpClient) { }
 
-  ngOnInit() {
-  }
-  logoutUser() {
-    this.authenticationService.logout();
-  }
+  ngOnInit() {}
+  logoutUser() { this.authenticationService.logout();}
   post() {
     const id = uuidv4();
     const createdAt = new Date();

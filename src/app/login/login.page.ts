@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
-
+import {NgForm} from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,5 +14,8 @@ export class LoginPage implements OnInit {
   }
   loginUser() {
     this.authenticationService.login();
+  }
+  onSubmit(event: NgForm) {
+  	console.log('event :: ', event.value);
   }
 }

@@ -1,25 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <ion-card class="login-card">
     <ion-card-header>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-      <ion-card-title>Card Title</ion-card-title>
+      <img src="../../assets/unlock.svg" class="img"/>
+      <ion-card-title class="card-title">Login</ion-card-title>
+
     </ion-card-header>
 
     <ion-card-content>
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-      <ion-button (click)="loginUser()">
-        login
-      </ion-button>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-input required type="text" name="username" placeholder="Username" ngModel #username="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input required type="text" name="password" placeholder="Password" ngModel #password="ngModel"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div class="ion-padding">
+          <ion-button class="button-primary" expand="block" type="submit" [disabled]="!form.valid">
+            Log in
+          </ion-button>
+        </div>
+        <div>
+          <p> Don't have an account ? <a [routerLink]="['/sign-up']">Sign up</a></p>
+        </div>
+      </form>
     </ion-card-content>
   </ion-card>
-
-
-<!--  <a [routerLink]="['/dashboard']">Go to dashboard</a>-->
 </ion-content>

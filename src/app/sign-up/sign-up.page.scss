@@ -1,6 +1,6 @@
 .login-card {
   height: calc(100vh - 5.5rem);
-  margin: 25% 9%;
+  margin: 0% 9%;
   overflow: auto;
   box-shadow: none;
 }
@@ -24,4 +24,7 @@ p{
 .button-native{
 	border-radius: 0px !important;
     text-transform: capitalize !important;
+}
+.back-arrow{
+	margin: 20px 0 0 0;
 }

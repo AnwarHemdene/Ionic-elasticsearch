@@ -1,0 +1,32 @@
+<ion-content>
+	    <ion-title class="back-arrow"><a [routerLink]="['/login']"><ion-icon name="arrow-round-back"></ion-icon></a>
+    </ion-title>
+  <ion-card class="login-card">
+    <ion-card-header>
+      <img src="../../assets/signup.svg" class="img"/>
+      <ion-card-title class="card-title">Sign Up</ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-input required type="text" name="username" placeholder="Username" ngModel #username="ngModel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input required type="password" name="password" placeholder="Password" ngModel #password="ngModel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input required type="password" name="confirmPassword" placeholder="Confirm Password" ngModel #confirmPassword="ngModel"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div class="ion-padding">
+          <ion-button  class="button-primary" [disabled]="!form.valid" expand="block" type="submit">
+            Sign Up
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
