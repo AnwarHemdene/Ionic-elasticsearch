@@ -24,22 +24,20 @@ export class LoginPage implements OnInit {
   }
   getUser(username, password){
     // get document by id
-        this.httpClient.get(URL + USERS + USER + `_search?q=username:${username}`)
-      .subscribe((res) => {
-      	console.log(res);
-      	console.log(res.hits.hits);
-      	if (res.hits.hits.length > 0){
-      		console.log('user exists', res.hits.hits[0]._source);
-      		if (res.hits.hits[0]._source.password === password){
-      			console.log('connected !');
-      			this.loginUser();
+    this.httpClient.get(URL + USERS + USER + `_search?q=username:${username}`)
+      	.subscribe((res: any) => {
+      		console.log(res.hits.hits);
+      		if (res.hits.hits.length > 0){
+      			console.log('user exists', res.hits.hits[0]._source);
+      			if (res.hits.hits[0]._source.password === password){
+      				console.log('connected !');
+      				this.loginUser();
+      			}else {
+      				console.log('not connected !');
+      			}
       		}else {
-      			console.log('not connected !');
+      			console.log('user doesnt exists');
       		}
-      	}else {
-      		console.log('user doesnt exists');
-      	}
-      },
-      (error) => console.log(error));
-  }
+      	});
+}
 }

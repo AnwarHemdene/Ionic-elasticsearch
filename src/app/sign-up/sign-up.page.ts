@@ -17,20 +17,23 @@ export class SignUpPage implements OnInit {
   ngOnInit() {
   }
   async onSubmit(event: NgForm) {
-   	if (true){
-  		if (event.value.confirmPassword === event.value.password) {
-	  		console.log('okkk');
-	  		await this.createUser(event.value.username, event.value.confirmPassword);
-	  	}else {
-	  		console.log('not ok');
-	  	}
-  	}else {
-
-  	}
+  	if (event.value.confirmPassword === event.value.password) {
+		await this.verifyUserExist(event.value.username, event.value.confirmPassword);
+	}else {
+		console.log('not ok');
+	}
 
   }
-  verifyUsernameExist(username){
-  	return true;
+  verifyUserExist(username, password){
+  	this.httpClient.get(URL + USERS + USER + `_search?q=username:${username}`)
+      	.subscribe(async (res: any) => {
+      		console.log(res.hits.hits);
+      		if (res.hits.hits.length > 0){
+      			console.log('username already exists');
+      		}else {
+      			await this.createUser(username, password);
+      		}
+      	});
   }
     createUser(username, password) {
     const id = uuidv4();
@@ -42,19 +45,22 @@ export class SignUpPage implements OnInit {
     "password": password,
     "createdAt": createdAt
     })
-    .subscribe((res) => {
+    .subscribe((res: any) => {
       console.log('result here :: ', res);
       console.log(res.hasOwnProperty('result'));
       console.log('result here :: ', res.result);
-      if(res.result === 'created'){
-      	this.loginUser();
-      }else {
+      if (res.hasOwnProperty('result')){
+      	if(res.result === 'created'){
+      		this.loginUser();
+	    }else {
 
+	    }
       }
+
     },
       (error) => console.log(error));
   }
     loginUser() {
     this.authenticationService.login();
-  }
+  } 
 }
