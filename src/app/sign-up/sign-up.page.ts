@@ -44,13 +44,13 @@ export class SignUpPage implements OnInit {
     })
     .subscribe((res) => {
       console.log('result here :: ', res);
-      if (res.result === "created") {
+      console.log(res.hasOwnProperty('result'));
+      console.log('result here :: ', res.result);
+      if(res.result === 'created'){
       	this.loginUser();
       }else {
-      	console.log('error');
+
       }
-      // console.log('item id: ', res._id );
-      // console.log('result : ', res.result)
     },
       (error) => console.log(error));
   }
