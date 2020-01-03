@@ -12,20 +12,21 @@ import {AuthenticationService} from '../services/authentication.service';
 })
 export class SignUpPage implements OnInit {
   constructor(private authenticationService: AuthenticationService,
-  	public httpClient: HttpClient) { }
+  	public httpClient: HttpClient,
+  	) { }
 
   ngOnInit() {
   }
   async onSubmit(event: NgForm) {
   	if (event.value.confirmPassword === event.value.password) {
-		await this.verifyUserExist(event.value.username, event.value.confirmPassword);
+		await this.verifyExist('username',event.value.username, event.value.confirmPassword);
 	}else {
 		console.log('not ok');
 	}
 
   }
-  verifyUserExist(username, password){
-  	this.httpClient.get(URL + USERS + USER + `_search?q=username:${username}`)
+  verifyExist(element,username, password){
+  	this.httpClient.get(URL + USERS + USER + `_search?q=${element}:${username}`)
       	.subscribe(async (res: any) => {
       		console.log(res.hits.hits);
       		if (res.hits.hits.length > 0){
@@ -62,5 +63,5 @@ export class SignUpPage implements OnInit {
   }
     loginUser() {
     this.authenticationService.login();
-  } 
+  }
 }

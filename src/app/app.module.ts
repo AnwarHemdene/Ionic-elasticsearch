@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {AuthenticationService} from './services/authentication.service';
 import {AuthGuard} from './services/auth-guard.service';
+import {AlertService } from './services/alert.service';
 import {IonicStorageModule} from '@ionic/storage';
 import { HttpClientModule } from  '@angular/common/http';
 
@@ -27,6 +28,7 @@ import { HttpClientModule } from  '@angular/common/http';
     SplashScreen,
       AuthenticationService,
       AuthGuard,
+      AlertService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
