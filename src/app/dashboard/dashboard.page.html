@@ -1,17 +1,39 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title id="dashboard-title">Dashboard         
+    <ion-title id="dashboard-title">
+      <p>
+        Dashboard  </p>   -->  
 <!--       <ion-button (click)="logoutUser()" id="logout">
       <ion-icon shape="round" name="log-out"></ion-icon>
     </ion-button> -->
-    <ion-button id="logout" shape="round" color="light" (click)="logoutUser()"><ion-icon shape="round" name="log-out"></ion-icon></ion-button>
-  </ion-title>
+<!--       <a><img src="../../assets/avatars/user1.svg" class="img img-avatar"/>
+    </a> -->
+<!--     <ion-button id="logout" shape="round" color="light" (click)="logoutUser()"><ion-icon shape="round" name="log-out"></ion-icon></ion-button> -->
+<!--   </ion-title>
 
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
+   <ion-fab id="avatar" horizontal="end" vertical="top" slot="fixed" edge>
+        <ion-fab-button color="light">
+          <img src="../../assets/avatars/female.svg" class="img "/>
+        </ion-fab-button>
+        <ion-fab-list>
+          <ion-fab-button color="light" (click)="goToProfile()">
+            <ion-icon name="contact"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button color="light" (click)="logoutUser()">
+            <ion-icon name="log-out"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
   <ion-content class="ion-padding">
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="light" (click)="addQuote()">
+          <ion-icon name="add" class="add-quote"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
 <!--   	<p>
       Sending a POST Request Example
   </p>
@@ -19,6 +41,15 @@
          <ion-button ion-button (click)="post()">post Data</ion-button>
          <ion-button ion-button (click)="update()">update Data</ion-button>
                   <ion-button ion-button (click)="delete()">delete Data</ion-button> -->
-
+      <ion-card>
+        <img class="quote-img" src="../../assets/book.svg" />
+        <ion-card-header>
+          <ion-card-subtitle>Warren Buffett</ion-card-subtitle>
+          <ion-card-title>Life quote of the day</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          You only have to do a very few things right in your life so long as you don't do too many things wrong.
+        </ion-card-content>
+      </ion-card>
   </ion-content>
 </ion-content>

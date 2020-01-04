@@ -1,0 +1,30 @@
+.back-arrow{
+	margin: 20px 0 0 0;
+}
+.login-card {
+  height: calc(100vh - 5.5rem);
+  margin: 0% 9%;
+  overflow: auto;
+  box-shadow: none;
+}
+.img{
+	width: 50%;
+	margin: auto;
+	max-width: 300px;
+}
+.card-title{
+	text-align: center;
+    margin: 20px 20px 5px 20px;
+    font-size: x-large;
+}
+.button-primary {
+	/*background-color: blue;*/
+	border-radius: 0px !important;
+}
+.category-list{
+    max-height: 50px;
+    overflow: auto;
+}
+.btn-category{
+	width: 100%;
+}

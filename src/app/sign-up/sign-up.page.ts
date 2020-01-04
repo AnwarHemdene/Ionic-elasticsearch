@@ -13,7 +13,7 @@ import { Alert } from '../interfaces/interfaces';
 })
 export class SignUpPage implements OnInit {
   	alert : Alert = {
-  		header: 'title',
+  	header: 'title',
 		subHeader: 'sub header',
 		message: 'message',
 		buttons: ['Ok']

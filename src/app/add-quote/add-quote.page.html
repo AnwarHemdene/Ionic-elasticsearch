@@ -1,0 +1,43 @@
+<ion-content>
+	    <ion-title class="back-arrow"><a [routerLink]="['/dashboard']"><ion-icon name="arrow-round-back"></ion-icon></a>
+    </ion-title>
+  <ion-card class="login-card">
+    <ion-card-header>
+      <img src="../../assets/add.svg" class="img"/>
+      <ion-card-title class="card-title">Add Quote</ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      	<ion-label>Category</ion-label>
+		 <ion-list class="category-list">
+		      <ion-item-sliding #item>
+		        <ion-item *ngFor="let item of category; let i = index;">
+		            <ion-button  expand="full" color="light"  class="btn-category"
+		            (click)="selectedCategory(item)">
+		            	{{item}}
+		            </ion-button>
+		        </ion-item>
+		      </ion-item-sliding>
+		  </ion-list>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-input required type="text" name="username" placeholder="Username" ngModel #username="ngModel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input required type="password" name="password" placeholder="Password" ngModel #password="ngModel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input required type="password" name="confirmPassword" placeholder="Confirm Password" ngModel #confirmPassword="ngModel"></ion-input>
+          </ion-item>
+        </ion-list>
+        <div class="ion-padding">
+          <ion-button  class="button-primary" [disabled]="!form.valid" expand="block" type="submit">
+            Sign Up
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

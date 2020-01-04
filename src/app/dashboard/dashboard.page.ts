@@ -3,6 +3,8 @@ import {AuthenticationService} from '../services/authentication.service';
 import { HttpClient } from  '@angular/common/http';
 import { URL, CATALOG, QUOTES} from '../../assets/variables';
 import * as uuidv4 from 'uuid/v4';
+import {Router} from '@angular/router';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -10,7 +12,9 @@ import * as uuidv4 from 'uuid/v4';
 })
 export class DashboardPage implements OnInit {
 
-  constructor(private authenticationService: AuthenticationService, public httpClient: HttpClient) { }
+  constructor(private authenticationService: AuthenticationService,
+              public httpClient: HttpClient,
+              private router: Router)   { }
 
   ngOnInit() {}
   logoutUser() { this.authenticationService.logout();}
@@ -93,5 +97,11 @@ export class DashboardPage implements OnInit {
         this.httpClient.get(URL + CATALOG + QUOTES + '45af080e-0053-475b-b197-147aa2d69ba1')
       .subscribe((res) => console.log(res),
       (error) => console.log(error));
+  }
+  goToProfile(){
+    this.router.navigate(['profile']);
+  }
+  addQuote(){
+    this.router.navigate(['add-quote']);
   }
 }
