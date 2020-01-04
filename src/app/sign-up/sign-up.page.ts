@@ -4,15 +4,24 @@ import * as uuidv4 from 'uuid/v4';
 import { URL, USERS, USER} from '../../assets/variables';
 import { HttpClient } from  '@angular/common/http';
 import {AuthenticationService} from '../services/authentication.service';
-
+import {AlertService} from '../services/alert.service';
+import { Alert } from '../interfaces/interfaces';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit {
-  constructor(private authenticationService: AuthenticationService,
+  	alert : Alert = {
+  		header: 'title',
+		subHeader: 'sub header',
+		message: 'message',
+		buttons: ['Ok']
+  	}
+  constructor(
+  	private authenticationService: AuthenticationService,
   	public httpClient: HttpClient,
+  	public alertService: AlertService
   	) { }
 
   ngOnInit() {
@@ -21,16 +30,23 @@ export class SignUpPage implements OnInit {
   	if (event.value.confirmPassword === event.value.password) {
 		await this.verifyExist('username',event.value.username, event.value.confirmPassword);
 	}else {
-		console.log('not ok');
+		// passwords are not equal
+		this.alert.header = 'Error';
+      	this.alert.subHeader = 'Password';
+      	this.alert.message = 'Error, passwords are not equal';
+      	this.alertService.showAlert(this.alert);
 	}
 
   }
   verifyExist(element,username, password){
   	this.httpClient.get(URL + USERS + USER + `_search?q=${element}:${username}`)
       	.subscribe(async (res: any) => {
-      		console.log(res.hits.hits);
       		if (res.hits.hits.length > 0){
-      			console.log('username already exists');
+      			// username already exists
+      			this.alert.header = 'Error';
+		      	this.alert.subHeader = 'Username already exists';
+		      	this.alert.message = 'Error, username already exists';
+		      	this.alertService.showAlert(this.alert);
       		}else {
       			await this.createUser(username, password);
       		}
@@ -47,19 +63,24 @@ export class SignUpPage implements OnInit {
     "createdAt": createdAt
     })
     .subscribe((res: any) => {
-      console.log('result here :: ', res);
-      console.log(res.hasOwnProperty('result'));
-      console.log('result here :: ', res.result);
       if (res.hasOwnProperty('result')){
       	if(res.result === 'created'){
+      		// user created 
+      		this.alert.header = 'Success';
+		    this.alert.subHeader = 'User created';
+		    this.alert.message = 'Success, user created!';
+		    this.alertService.showAlert(this.alert);
       		this.loginUser();
 	    }else {
-
+	    	// user couldnt be created
+	    	this.alert.header = 'Error';
+		    this.alert.subHeader = 'Server error';
+		    this.alert.message = 'Error, user couldnt be created';
+		    this.alertService.showAlert(this.alert);
 	    }
       }
 
-    },
-      (error) => console.log(error));
+    });
   }
     loginUser() {
     this.authenticationService.login();

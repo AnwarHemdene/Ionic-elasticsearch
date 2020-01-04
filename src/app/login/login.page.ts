@@ -17,11 +17,10 @@ export class LoginPage implements OnInit {
   	public httpClient: HttpClient,
   	public alertService: AlertService) { }
 
-  ngOnInit() {
-  }
-  loginUser() {
-    this.authenticationService.login();
-  }
+  ngOnInit() {}
+
+  loginUser() { this.authenticationService.login(); }
+
   onSubmit(event: NgForm) {
   	this.getUser(event.value.username, event.value.password);
   }
@@ -36,7 +35,6 @@ export class LoginPage implements OnInit {
     this.httpClient.get(URL + USERS + USER + `_search?q=username:${username}`)
       	.subscribe((res: any) => {
       		if (res.hits.hits.length > 0){
-      			console.log('user exists', res.hits.hits[0]._source);
       			if (res.hits.hits[0]._source.password === password){
       				// user connected 
       				alert.header = 'Success';
@@ -59,5 +57,5 @@ export class LoginPage implements OnInit {
       			this.alertService.showAlert(alert);
       		}
       	});
-}
+	}
 }
