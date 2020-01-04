@@ -41,14 +41,14 @@
          <ion-button ion-button (click)="post()">post Data</ion-button>
          <ion-button ion-button (click)="update()">update Data</ion-button>
                   <ion-button ion-button (click)="delete()">delete Data</ion-button> -->
-      <ion-card>
-        <img class="quote-img" src="../../assets/book.svg" />
+      <ion-card *ngFor="let item of category">
+        <img class="quote-img" src="{{item.imgUrl}}" />
         <ion-card-header>
-          <ion-card-subtitle>Warren Buffett</ion-card-subtitle>
-          <ion-card-title>Life quote of the day</ion-card-title>
+          <ion-card-subtitle>{{item.author}}</ion-card-subtitle>
+          <ion-card-title>{{item.title}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          You only have to do a very few things right in your life so long as you don't do too many things wrong.
+          {{item.description}}
         </ion-card-content>
       </ion-card>
   </ion-content>

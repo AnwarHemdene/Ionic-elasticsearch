@@ -23,18 +23,15 @@
 		  </ion-list>
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
           <ion-item>
-            <ion-input required type="text" name="username" placeholder="Username" ngModel #username="ngModel"></ion-input>
+            <ion-input required type="text" name="author" placeholder="Author" ngModel #author="ngModel"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-input required type="password" name="password" placeholder="Password" ngModel #password="ngModel"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input required type="password" name="confirmPassword" placeholder="Confirm Password" ngModel #confirmPassword="ngModel"></ion-input>
+            <ion-textarea required name="description" placeholder="Description" ngModel #description="ngModel"></ion-textarea>
           </ion-item>
         </ion-list>
         <div class="ion-padding">
-          <ion-button  class="button-primary" [disabled]="!form.valid" expand="block" type="submit">
-            Sign Up
+          <ion-button  class="custom-button" [disabled]="!form.valid" expand="block" type="submit">
+            Add
           </ion-button>
         </div>
       </form>

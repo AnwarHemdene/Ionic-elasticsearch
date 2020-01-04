@@ -4,3 +4,15 @@ export interface Alert {
 	message: string;
 	buttons: string[];
 }
+
+export interface Quote {
+	id?: string;
+	title: string;
+	category: string;
+	author: string;
+	imgUrl: string;
+	description: string;
+	creator: string;
+	createdAt: date;
+	updatedAt: date;
+}

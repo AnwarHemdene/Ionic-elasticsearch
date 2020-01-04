@@ -11,26 +11,28 @@ import {Router} from '@angular/router';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
+  category = [];
   constructor(private authenticationService: AuthenticationService,
               public httpClient: HttpClient,
               private router: Router)   { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.get();
+  }
   logoutUser() { this.authenticationService.logout();}
-  post() {
+  post(quote: any) {
     const id = uuidv4();
     const createdAt = new Date();
     let url = URL + CATALOG + QUOTES + id;
     this.httpClient.post(url, {
     "id": id,
 
-    "title": "Mastering Elasticsearch 2",
-
-    "description": "Mastering Elasticsearch 2",
-
-    "author": "Anwar Hemdene",
-
+    'category': quote.category,
+    'title': quote.title,
+    'imgUrl': quote.imgUrl,
+    'description': quote.description,
+    'author': quote.author,
+    'publisher': 'connected user',
     "createdAt": createdAt,
 
     "updatedAt": null
@@ -46,18 +48,20 @@ export class DashboardPage implements OnInit {
   get(){
     // get all documents under index 
   	this.httpClient.get(URL + CATALOG + QUOTES + '_search?')
-  		.subscribe((res) => 
+  		.subscribe((res: any) => 
         {
           console.log(res);
-          // const result = res.hits.hits;
-          // if (result.length !== 0 ) {
-          //   console.log(result);
-          //   result.filter((item, index) => {
-          //     console.log('item '+ index, item._source);
-          //   })
-          // } else {
-          //   console.log('emptyyy !! ');
-          // }
+          
+          const result = res.hits.hits;
+          if (result.length !== 0 ) {
+            console.log(result);
+            result.filter((item, index) => {
+              console.log('item '+ index, item._source);
+              this.category.push(item._source);
+            })
+          } else {
+            console.log('emptyyy !! ');
+          }
         },
   		(error) => console.log(error));
   }
