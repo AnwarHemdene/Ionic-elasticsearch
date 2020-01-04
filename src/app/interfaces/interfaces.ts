@@ -13,6 +13,6 @@ export interface Quote {
 	imgUrl: string;
 	description: string;
 	creator: string;
-	createdAt: date;
-	updatedAt: date;
+	createdAt: Date;
+	updatedAt?: Date;
 }
