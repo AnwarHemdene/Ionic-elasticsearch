@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 })
 export class DashboardPage implements OnInit {
   category = [];
+  connectedUser = {};
   constructor(private authenticationService: AuthenticationService,
               public httpClient: HttpClient,
               private router: Router)   { }
@@ -40,8 +41,6 @@ export class DashboardPage implements OnInit {
     })
     .subscribe((res) => {
       console.log(res);
-      // console.log('item id: ', res._id );
-      // console.log('result : ', res.result)
     },
       (error) => console.log(error));
   }
@@ -49,9 +48,7 @@ export class DashboardPage implements OnInit {
     // get all documents under index 
   	this.httpClient.get(URL + CATALOG + QUOTES + '_search?')
   		.subscribe((res: any) => 
-        {
-          console.log(res);
-          
+        {          
           const result = res.hits.hits;
           if (result.length !== 0 ) {
             console.log(result);
