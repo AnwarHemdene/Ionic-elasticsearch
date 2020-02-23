@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Alert } from '../interfaces/interfaces';
 import { ActionSheetController } from '@ionic/angular';
+import {Router} from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +11,8 @@ export class AlertService {
 
   constructor(
   	public alertController: AlertController,
-  	public actionSheetController: ActionSheetController) { }
+  	public actionSheetController: ActionSheetController,
+      private router: Router) { }
     async showAlert(customAlert: Alert) {
 	const alert = await this.alertController.create({
 	      header: customAlert.header,
@@ -30,6 +33,7 @@ export class AlertService {
           console.log('Edit clicked');
           console.log('navigate to edit quote with id ', id);
           // navigate to edit quote with id 
+          this.router.navigate(['edit-quote', id]);
         }
       },{
         text: 'Delete',

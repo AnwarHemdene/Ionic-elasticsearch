@@ -25,6 +25,10 @@ const routes: Routes = [
     path: 'add-quote',
     loadChildren: () => import('./add-quote/add-quote.module').then( m => m.AddQuotePageModule)
   },
+  {
+    path: 'edit-quote/:id',
+    loadChildren: () => import('./edit-quote/edit-quote.module').then( m => m.EditQuotePageModule)
+  },
 ];
 
 @NgModule({
