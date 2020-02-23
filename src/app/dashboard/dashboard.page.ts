@@ -4,6 +4,8 @@ import { HttpClient } from  '@angular/common/http';
 import { URL, CATALOG, QUOTES} from '../../assets/variables';
 import * as uuidv4 from 'uuid/v4';
 import {Router} from '@angular/router';
+import {AlertService} from '../services/alert.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +17,8 @@ export class DashboardPage implements OnInit {
   connectedUser = {};
   constructor(private authenticationService: AuthenticationService,
               public httpClient: HttpClient,
-              private router: Router)   { }
+              private router: Router,
+              public alertService: AlertService)   { }
 
   ngOnInit() {
     this.get();
@@ -104,5 +107,9 @@ export class DashboardPage implements OnInit {
   }
   addQuote(){
     this.router.navigate(['add-quote']);
+  }
+  editCard(id: any){
+    console.log('clicked');
+    this.alertService.presentActionSheet(id);
   }
 }

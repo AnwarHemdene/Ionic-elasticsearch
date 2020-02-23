@@ -41,14 +41,14 @@
          <ion-button ion-button (click)="post()">post Data</ion-button>
          <ion-button ion-button (click)="update()">update Data</ion-button>
                   <ion-button ion-button (click)="delete()">delete Data</ion-button> -->
-      <ion-card *ngFor="let item of category">
+      <ion-card *ngFor="let item of category" (click)="editCard(item.id)">
         <img class="quote-img" src="../../assets/category/{{item.imgUrl}}" />
         <ion-card-header>
-          <ion-card-subtitle>{{item.author}}</ion-card-subtitle>
-          <ion-card-title>{{item.title}}</ion-card-title>
+          <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
+          <ion-card-title>{{item.description}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          {{item.description}}
+          -{{item.author}}
         </ion-card-content>
       </ion-card>
   </ion-content>
