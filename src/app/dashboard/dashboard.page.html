@@ -42,7 +42,7 @@
          <ion-button ion-button (click)="update()">update Data</ion-button>
                   <ion-button ion-button (click)="delete()">delete Data</ion-button> -->
       <ion-card *ngFor="let item of category">
-        <img class="quote-img" src="{{item.imgUrl}}" />
+        <img class="quote-img" src="../../assets/category/{{item.imgUrl}}" />
         <ion-card-header>
           <ion-card-subtitle>{{item.author}}</ion-card-subtitle>
           <ion-card-title>{{item.title}}</ion-card-title>

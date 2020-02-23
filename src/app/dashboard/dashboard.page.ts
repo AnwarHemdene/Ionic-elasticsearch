@@ -46,7 +46,7 @@ export class DashboardPage implements OnInit {
   }
   get(){
     // get all documents under index 
-  	this.httpClient.get(URL + CATALOG + QUOTES + '_search?')
+  	this.httpClient.get(URL  + QUOTES + '_search?')
   		.subscribe((res: any) => 
         {          
           const result = res.hits.hits;

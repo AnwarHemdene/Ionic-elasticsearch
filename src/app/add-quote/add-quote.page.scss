@@ -11,6 +11,7 @@
 	width: 50%;
 	margin: auto;
 	max-width: 300px;
+  padding-bottom: 6px;
 }
 .card-title{
 	text-align: center;
@@ -33,4 +34,13 @@ custom-button {
     box-shadow: none;
     border-bottom: 1px solid lightgrey;
 
+}
+.card-content-md {
+  padding-top: 0 !important;
+}
+.title{
+  text-align: center;
+  float: right;
+  width: 100%;
+  margin: auto;
 }

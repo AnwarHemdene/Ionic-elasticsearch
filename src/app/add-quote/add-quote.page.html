@@ -1,14 +1,11 @@
 <ion-content>
 	    <ion-title class="back-arrow"><a [routerLink]="['/dashboard']"><ion-icon name="arrow-round-back"></ion-icon></a>
+        <span class="title">Add Quote</span>
     </ion-title>
   <ion-card class="login-card">
-    <ion-card-header>
-      <img src="../../assets/add.svg" class="img"/>
-      <ion-card-title class="card-title">Add Quote</ion-card-title>
-
-    </ion-card-header>
 
     <ion-card-content>
+            <img [src]="imgRelatedUrl+selectedCategoryText+imgExtension" class="img"/>
       <form #form="ngForm" (ngSubmit)="onSubmit(form)">
       	<ion-label>Category</ion-label>
 		 <ion-list class="category-list">
@@ -22,11 +19,13 @@
 		      </ion-item-sliding>
 		  </ion-list>
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-label>Author</ion-label>
           <ion-item>
-            <ion-input required type="text" name="author" placeholder="Author" ngModel #author="ngModel"></ion-input>
+            <ion-input required type="text" name="author" ngModel #author="ngModel"></ion-input>
           </ion-item>
+          <ion-label>Description</ion-label>
           <ion-item>
-            <ion-textarea required name="description" placeholder="Description" ngModel #description="ngModel"></ion-textarea>
+            <ion-textarea required name="description"  ngModel #description="ngModel"></ion-textarea>
           </ion-item>
         </ion-list>
         <div class="ion-padding">
