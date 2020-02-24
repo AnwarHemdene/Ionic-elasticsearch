@@ -28,28 +28,34 @@
           </ion-fab-button>
         </ion-fab-list>
       </ion-fab>
-  <ion-content class="ion-padding">
+  <ion-content class="ion-padding" *ngIf="category.length > 0">
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="light" (click)="addQuote()">
+          <ion-icon name="add" class="add-quote"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-card *ngFor="let item of category" (click)="editCard(item.id)">
+      <img class="quote-img" src="../../assets/category/{{item.imgUrl}}" />
+      <ion-card-header>
+        <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
+        <ion-card-title>{{item.description}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+          -{{item.author}}
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+  <ion-content class="ion-padding" *ngIf="category.length === 0">
     <ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="light" (click)="addQuote()">
           <ion-icon name="add" class="add-quote"></ion-icon>
         </ion-fab-button>
       </ion-fab>
-<!--   	<p>
-      Sending a POST Request Example
-  </p>
-  	 <ion-button ion-button (click)="get()">get Data</ion-button>
-         <ion-button ion-button (click)="post()">post Data</ion-button>
-         <ion-button ion-button (click)="update()">update Data</ion-button>
-                  <ion-button ion-button (click)="delete()">delete Data</ion-button> -->
-      <ion-card *ngFor="let item of category" (click)="editCard(item.id)">
-        <img class="quote-img" src="../../assets/category/{{item.imgUrl}}" />
+      <ion-card >
         <ion-card-header>
-          <ion-card-subtitle>{{item.category}}</ion-card-subtitle>
-          <ion-card-title>{{item.description}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          -{{item.author}}
-        </ion-card-content>
+        <ion-card-title>No data</ion-card-title>
+      </ion-card-header>
+        <img class="quote-img" src="../../assets/nodata.svg" />
       </ion-card>
   </ion-content>
 </ion-content>

@@ -40,6 +40,7 @@ export class AlertService {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
+          this.router.navigate(['delete-quote', id]);
           console.log('Delete clicked');
         }
       }, {

@@ -17,8 +17,8 @@ export class CrudService {
     }
   constructor(
       public httpClient: HttpClient,
-      public alertService: AlertService,
-      private router: Router) { }
+      private router: Router,
+      public alertService: AlertService) { }
 
   createQuote(quote){
     const id = uuidv4();
@@ -93,13 +93,18 @@ export class CrudService {
     },
       (error) => console.log(error));
   }
-  delete(){
-      this.httpClient.delete(URL + QUOTES + 'a362c812-2584-4c59-abe4-fff636609519')
-      .subscribe((res) => console.log(res),
-      (error) => console.log(error));
+  async delete(id: string){
+  	let deleted = false;
+      await this.httpClient.delete(URL + QUOTES + QUOTE +id)
+      .subscribe((res: any) => {console.log('from delete ', res);
+      	deleted = res.result === "deleted";},
+      (error) => console.log(error),
+      () => {return deleted;});
+      
   }
-  getItemById(id){
+  getItemById(id: string){
     // get document by id
+    console.log('received id :: ', id);
     let data;
         this.httpClient.get(URL + QUOTES + QUOTE+ id)
       .subscribe((res: any) => {

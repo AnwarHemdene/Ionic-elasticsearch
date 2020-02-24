@@ -16,6 +16,7 @@ import {CrudService} from '../services/crud.service';
 export class DashboardPage implements OnInit {
   category = [];
   connectedUser = {};
+  nodata;
   constructor(private authenticationService: AuthenticationService,
               public httpClient: HttpClient,
               private router: Router,
@@ -25,6 +26,7 @@ export class DashboardPage implements OnInit {
 
   async ngOnInit() {
     this.category = await this.crudService.get();
+    this.nodata = this.category.length === 0;
   }
   logoutUser() { this.authenticationService.logout();}
 
